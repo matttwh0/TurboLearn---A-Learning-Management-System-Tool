@@ -374,45 +374,6 @@ export default function Analytics() {
           </div>
         </div>
 
-        <div className="card analytics-card">
-          <h2>🎯 Goals</h2>
-          <div className="goals-content">
-            <div className="goal-item">
-              <span className="goal-text">Complete 5 assignments</span>
-              <div className="goal-progress">
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "80%" }}></div>
-                </div>
-              </div>
-            </div>
-            <div className="goal-item">
-              <span className="goal-text">Study 2 hours daily</span>
-              <div className="goal-progress">
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "60%" }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card analytics-card">
-          <h2>🏆 Achievements</h2>
-          <div className="achievements-content">
-            <div className="achievement-badge">
-              <span className="badge-icon">⭐</span>
-              <span className="badge-text">Perfect Week</span>
-            </div>
-            <div className="achievement-badge">
-              <span className="badge-icon">🔥</span>
-              <span className="badge-text">5 Day Streak</span>
-            </div>
-            <div className="achievement-badge">
-              <span className="badge-icon">🎯</span>
-              <span className="badge-text">Quiz Master</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export default function ClassDetail() {
   const { classId } = useParams();
   const navigate = useNavigate();
   const { setCurrentClass } = useClassContext();
-  const [activeTab, setActiveTab] = useState("assignments");
+  const [activeTab, setActiveTab] = useState("stream");
   const [question, setQuestion] = useState("");
   const [chatAnswer, setChatAnswer] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function ClassDetail() {
       id: 1,
       subject: "MATH",
       grade: 88,
-      color: "#9c27b0",
+      color: "#b39ddb",
       teacher: "Ms. Shields",
       room: "Room 201",
       assignments: [
@@ -39,7 +39,7 @@ export default function ClassDetail() {
       id: 2,
       subject: "ENGLISH",
       grade: 88,
-      color: "#4caf50",
+      color: "#a5d6a7",
       teacher: "Mr. Johnson",
       room: "Room 105",
       assignments: [
@@ -62,7 +62,7 @@ export default function ClassDetail() {
       id: 3,
       subject: "SCIENCE",
       grade: 88,
-      color: "#2196f3",
+      color: "#90caf9",
       teacher: "Dr. Smith",
       room: "Lab 3",
       assignments: [
@@ -85,7 +85,7 @@ export default function ClassDetail() {
       id: 4,
       subject: "HISTORY",
       grade: 98,
-      color: "#ff9800",
+      color: "#ffcc80",
       teacher: "Prof. Williams",
       room: "Room 156",
       assignments: [
@@ -159,105 +159,43 @@ export default function ClassDetail() {
   ];
 
   return (
-    <div className="class-detail">
-      <div className="class-layout">
-        <div className="class-sidebar-left">
-          <div className="class-info-section">
-            <h1 style={{ color: currentClass.color }}>{currentClass.subject}</h1>
-            <div className="class-meta">
-              <span>👨‍🏫 {currentClass.teacher}</span>
-              <span>📍 {currentClass.room}</span>
-              <span>📊 Grade: {currentClass.grade}%</span>
-            </div>
-          </div>
-          
-          <div className="class-navbar">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                className={`nav-btn ${activeTab === tab.id ? "active" : ""}`}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                {tab.icon} {tab.label}
-              </button>
-            ))}
-          </div>
+    <div className="classroom-layout">
+      {/* Class Banner - Full Width */}
+      <div className="class-banner" style={{ backgroundColor: currentClass.color }}>
+        <div className="banner-content">
+          <h2>{currentClass.subject}</h2>
+          <p>{currentClass.teacher} • {currentClass.room}</p>
         </div>
-
-        <div className="class-main">
-          <div className="tab-content">
-        {activeTab === "assignments" && (
-          <div className="assignments-tab">
-            <h2>📝 Assignments</h2>
-            <div className="assignments-list">
-              {currentClass.assignments.map((assignment) => (
-                <div key={assignment.id} className={`assignment-card ${assignment.status}`}>
-                  <div className="assignment-header">
-                    <h3>{assignment.title}</h3>
-                    <span className={`status-badge ${assignment.status}`}>
-                      {assignment.status === "completed" ? "✅ Completed" : 
-                       assignment.status === "in-progress" ? "🔄 In Progress" : "⏳ Pending"}
-                    </span>
-                  </div>
-                  <p className="assignment-description">{assignment.description}</p>
-                  <div className="assignment-due">Due: {assignment.due}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "syllabus" && (
-          <div className="syllabus-tab">
-            <h2>📚 Syllabus</h2>
-            <div className="syllabus-list">
-              {currentClass.syllabus.map((item, index) => (
-                <div key={index} className="syllabus-item">
-                  <div className="week-number">Week {item.week}</div>
-                  <div className="syllabus-content">
-                    <h3>{item.topic}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "announcements" && (
-          <div className="announcements-tab">
-            <h2>📢 Announcements</h2>
-            <div className="announcements-list">
-              {currentClass.announcements.map((announcement) => (
-                <div key={announcement.id} className="announcement-card">
-                  <div className="announcement-header">
-                    <h3>{announcement.title}</h3>
-                    <span className="announcement-date">{announcement.date}</span>
-                  </div>
-                  <p>{announcement.message}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-          </div>
+        <div className="banner-decoration">
+          <div className="graduation-cap">🎓</div>
+          <div className="graduation-cap">🎓</div>
         </div>
+      </div>
 
-        <div className="class-sidebar-right">
-          <div className="progress-section">
-            <h3>📊 Your Progress</h3>
-            
-            <div className="overall-progress">
-              <h4>Overall Class Progress</h4>
-              <div className="progress-bar-container">
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: `${currentClass.grade}%` }}></div>
-                </div>
-                <span className="progress-text">{currentClass.grade}% Complete</span>
-              </div>
-            </div>
+      {/* Navigation Tabs */}
+      <div className="classroom-tabs-container">
+        <div className="classroom-tabs">
+          <button className={`tab-btn ${activeTab === "stream" ? "active" : ""}`} onClick={() => setActiveTab("stream")}>
+            Stream
+          </button>
+          <button className={`tab-btn ${activeTab === "assignments" ? "active" : ""}`} onClick={() => setActiveTab("assignments")}>
+            Classwork
+          </button>
+          <button className={`tab-btn ${activeTab === "syllabus" ? "active" : ""}`} onClick={() => setActiveTab("syllabus")}>
+            Syllabus
+          </button>
+          <button className={`tab-btn ${activeTab === "announcements" ? "active" : ""}`} onClick={() => setActiveTab("announcements")}>
+            Announcements
+          </button>
+        </div>
+      </div>
 
+      {/* Main Content Area */}
+      <div className="classroom-main">
+        {/* Left Sidebar */}
+        <div className="classroom-sidebar">
+          {/* Progress Section */}
+          <div className="sidebar-card progress-card">
             <div className="weekly-progress">
               <h4>This Week's Goals</h4>
               <div className="progress-cards">
@@ -301,27 +239,10 @@ export default function ClassDetail() {
                 </div>
               </div>
             </div>
-
-            <div className="achievements">
-              <h4>🏆 Recent Achievements</h4>
-              <div className="achievement-list">
-                <div className="achievement-item">
-                  <span className="achievement-icon">⭐</span>
-                  <span>5 assignments in a row!</span>
-                </div>
-                <div className="achievement-item">
-                  <span className="achievement-icon">🔥</span>
-                  <span>3-day streak</span>
-                </div>
-                <div className="achievement-item">
-                  <span className="achievement-icon">🎯</span>
-                  <span>90%+ on last quiz</span>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div className="ai-chat-section">
+          {/* AI Chat Section - Full Width */}
+          <div className="sidebar-card ai-chat-card">
             <h3>🤖 AI Assistant</h3>
             <div className="chat-input">
               <input
@@ -349,6 +270,115 @@ export default function ClassDetail() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Main Stream Area */}
+        <div className="classroom-stream">
+          {/* Stream Tab Content */}
+          {activeTab === "stream" && (
+            <div className="stream-content">
+              {/* Announcement Input */}
+              <div className="stream-card announcement-input">
+                <div className="profile-avatar">👤</div>
+                <div className="announcement-placeholder">
+                  Announce something to your class
+                </div>
+              </div>
+
+              {/* Assignments Feed */}
+              {currentClass.assignments.map((assignment) => (
+                <div key={assignment.id} className="stream-card assignment-post">
+                  <div className="post-header">
+                    <div className="post-icon">📝</div>
+                    <div className="post-info">
+                      <span className="post-author">{currentClass.teacher}</span>
+                      <span className="post-time">Yesterday</span>
+                    </div>
+                    <div className="post-menu">⋯</div>
+                  </div>
+                  <div className="post-content">
+                    <p><strong>{currentClass.teacher}</strong> posted a new assignment: <strong>{assignment.title}</strong></p>
+                    <p className="assignment-description">{assignment.description}</p>
+                    <div className="assignment-due">Due: {assignment.due}</div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Announcements Feed */}
+              {currentClass.announcements.map((announcement) => (
+                <div key={announcement.id} className="stream-card announcement-post">
+                  <div className="post-header">
+                    <div className="post-icon">👤</div>
+                    <div className="post-info">
+                      <span className="post-author">{currentClass.teacher}</span>
+                      <span className="post-time">{announcement.date}</span>
+                    </div>
+                    <div className="post-menu">⋯</div>
+                  </div>
+                  <div className="post-content">
+                    <p><strong>{announcement.title}</strong></p>
+                    <p>{announcement.message}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Other Tab Content */}
+          {activeTab === "assignments" && (
+            <div className="assignments-tab">
+              <h2>📝 Assignments</h2>
+              <div className="assignments-list">
+                {currentClass.assignments.map((assignment) => (
+                  <div key={assignment.id} className={`assignment-card ${assignment.status}`}>
+                    <div className="assignment-header">
+                      <h3>{assignment.title}</h3>
+                      <span className={`status-badge ${assignment.status}`}>
+                        {assignment.status === "completed" ? "✅ Completed" : 
+                         assignment.status === "in-progress" ? "🔄 In Progress" : "⏳ Pending"}
+                      </span>
+                    </div>
+                    <p className="assignment-description">{assignment.description}</p>
+                    <div className="assignment-due">Due: {assignment.due}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "syllabus" && (
+            <div className="syllabus-tab">
+              <h2>📚 Syllabus</h2>
+              <div className="syllabus-list">
+                {currentClass.syllabus.map((item, index) => (
+                  <div key={index} className="syllabus-item">
+                    <div className="week-number">Week {item.week}</div>
+                    <div className="syllabus-content">
+                      <h3>{item.topic}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "announcements" && (
+            <div className="announcements-tab">
+              <h2>📢 Announcements</h2>
+              <div className="announcements-list">
+                {currentClass.announcements.map((announcement) => (
+                  <div key={announcement.id} className="announcement-card">
+                    <div className="announcement-header">
+                      <h3>{announcement.title}</h3>
+                      <span className="announcement-date">{announcement.date}</span>
+                    </div>
+                    <p>{announcement.message}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
