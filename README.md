@@ -1,4 +1,4 @@
-# TurboLearn---A-Learning-Management-System-Tool
+# TurboLearn- A Learning-Management System Tool
 TurboLearn is an AI powered learning management system built for students and teacher K-12 built for quick insights and productivity.
 Turbolearn features React, Vite, Python, Node, Flask, and Google Gemini API.
 
