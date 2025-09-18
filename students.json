@@ -1,0 +1,46 @@
+{
+  "students": [
+    {
+      "student_id": "401",
+      "name": "Alex Johnson",
+      "results": {
+        "assignments": {
+          "geometry": 70,
+          "fractions": 55,
+          "comprehension": 80
+        },
+        "quizzes": {
+          "geometry": 60,
+          "fractions": 50,
+          "comprehension": 85
+        },
+        "tests": {
+          "geometry": 65,
+          "fractions": 45,
+          "comprehension": 78
+        }
+      }
+    },
+    {
+      "student_id": "402",
+      "name": "Maria Lopez",
+      "results": {
+        "assignments": {
+          "geometry": 90,
+          "fractions": 80,
+          "comprehension": 88
+        },
+        "quizzes": {
+          "geometry": 85,
+          "fractions": 75,
+          "comprehension": 92
+        },
+        "tests": {
+          "geometry": 88,
+          "fractions": 70,
+          "comprehension": 90
+        }
+      }
+    }
+  ]
+}
